@@ -3,6 +3,8 @@ require 'erb'
 
 require 'net/http'
 require 'uri'
+require "cgi"
+require "json"
 
 require 'fileutils'
 require 'pathname'
@@ -283,11 +285,9 @@ class Jeweler
     end
     
     def create_and_push_repo
-      Net::HTTP.post_form URI.parse('http://github.com/api/v2/yaml/repos/create'),
-                                'login' => github_username,
-                                'token' => github_token,
-                                'description' => summary,
-                                'name' => project_name
+      url = 'https://api.github.com/user/repos'
+      form = {'description' => summary,'name' => project_name}.to_json
+      puts `curl -i -u #{github_username} -X POST -d '#{form}' #{url}`
       # TODO do a HEAD request to see when it's ready?
       @repo.push('origin')
     end

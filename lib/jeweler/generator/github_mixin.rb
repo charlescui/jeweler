@@ -12,7 +12,7 @@ class Jeweler
         
         if generator.should_create_remote_repo
           unless generator.github_token
-            raise NoGitHubToken
+            # raise NoGitHubToken
           end
         end
       end

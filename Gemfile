@@ -1,11 +1,12 @@
 source "http://rubygems.org"
 source "http://gems.github.com"
-
+source 'http://ruby.taobao.org/'
 
 gem "rake"
 gem "git", ">= 1.2.5"
 gem "bundler", "~> 1.0"
 gem "rdoc"
+gem 'json'
 
 group :development do
   gem "yard", "~> 0.7.4"
